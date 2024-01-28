@@ -1,10 +1,14 @@
 type Query {
    departments: [Department]
    department(id: ID!): Department!
+   departmentByName(name: String!): Department
 }
 
 type Mutation {
    newDepartment(department: DepartmentRequestDto!): Department
+   updateDepartment(id: ID!,department:DepartmentRequestDto!): Department
+   deleteDepartment(id: ID!): String
+   addEmployee(id: ID!, employee: EmployeeRequestDto!): Department
 }
 
 input DepartmentRequestDto {
@@ -18,3 +22,4 @@ type Department {
    organization: Organization
    employees: [Employee]
 }
+

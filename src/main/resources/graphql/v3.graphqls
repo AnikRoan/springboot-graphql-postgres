@@ -15,7 +15,7 @@ input EmployeeRequestDto {
   salary: Int
   age: Int
   organizationId: Int!
-  departmentId: Int!
+
 }
 
 type Employee {

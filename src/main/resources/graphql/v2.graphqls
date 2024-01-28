@@ -1,10 +1,13 @@
 extend type Query {
    organizations: [Organization]
    organization(id: ID!): Organization!
+   orgByName(name: String!): [Organization]
 }
 
 extend type Mutation {
    newOrganization(organization: OrganizationRequestDto!): Organization
+   updOrganization(id: ID!, organization: OrganizationRequestDto! ): Organization
+   deleteOrganization(id: ID!): String
 }
 
 input OrganizationRequestDto {
