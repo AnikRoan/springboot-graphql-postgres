@@ -9,6 +9,7 @@ import com.hillel.ua.graphql.filter.FilterField;
 import com.hillel.ua.graphql.repository.DepartmentRepository;
 import com.hillel.ua.graphql.repository.EmployeeRepository;
 import com.hillel.ua.graphql.repository.OrganizationRepository;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;

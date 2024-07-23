@@ -30,6 +30,20 @@ public class OrganizationController {
         return repository.save(new Organization(null, organization.getName(), null, null));
     }
 
+    @MutationMapping
+    public Organization updOrganization(@Argument Integer id, @Argument OrganizationRequestDto organization){
+        Organization orgToUpd = repository.findById(id).orElseThrow(() -> new RuntimeException("Organization not found"));
+        orgToUpd.setName(organization.getName());
+        return repository.save(orgToUpd);
+    }
+
+    @MutationMapping
+    public String deleteOrganization(@Argument Integer id) {
+        Organization orgToUpd = repository.findById(id).orElseThrow(() -> new RuntimeException("Organization not found"));
+        repository.delete(orgToUpd);
+        return "Organization with id: "+ id+ " was successfully deleted!";
+    }
+
     @QueryMapping
     public Iterable<Organization> organizations() {
         return repository.findAll();
@@ -45,6 +59,11 @@ public class OrganizationController {
         if (selectionSet.contains("departments"))
             spec = spec.and(fetchDepartments());
         return repository.findOne(spec).orElseThrow();
+    }
+
+    @QueryMapping
+    public Iterable<Organization> orgByName(@Argument String name){
+        return repository.findOrganizationByNameContainingIgnoreCase(name);
     }
 
     private Specification<Organization> fetchDepartments() {
